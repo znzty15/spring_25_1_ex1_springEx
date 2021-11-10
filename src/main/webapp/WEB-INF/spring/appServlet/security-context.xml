@@ -6,17 +6,19 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<security:http auto-config="true">
+		<security:form-login login-page="/loginForm.html" 
+			authentication-failure-url="/loginForm.html?ng" />
 		<security:intercept-url pattern="/login.html*" access="ROLE_USER"/>
 		<security:intercept-url pattern="/admin.html*" access="ROLE_ADMIN"/>
 	</security:http>
-	
+
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="user" password="123" authorities="ROLE_USER"/>
 				<security:user name="admin" password="123" authorities="ROLE_ADMIN,ROLE_USER"/>
-			</security:user-service>
-		</security:authentication-provider>
+			</security:user-service>			
+		</security:authentication-provider>	
 	</security:authentication-manager>
 
 </beans>
